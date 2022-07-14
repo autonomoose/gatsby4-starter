@@ -1,28 +1,13 @@
 import React from 'react';
-import { Link } from 'gatsby';
+
+import LinkD from './linkd';
 
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Button from '@mui/material/Button';
 
-// general routines needed by most pages
-//   date formatting, debug support, format header
-
 // quick-n-dirty yy-mm-dd
 export var sysQuickDate = new Intl.DateTimeFormat("en-US", {year: "2-digit", month: "numeric", day: "numeric"});
-
-const linkDebug = (plink: string, vdebug: string): string => {
-    if (!vdebug) { return(plink); }
-    const sep = (plink.indexOf('?') > 0) ? '&': '?';
-    return (plink + sep + 'debug=' + vdebug);
-}
-
-export const LinkD = (props: any) => {
-    const { to, vdebug, children, ...pass_props } = props;
-    return (
-        <Link to={linkDebug(to, vdebug)} {...pass_props} style={{ color: "blue" }}>{children}</Link>
-    );
-}
 
 interface LinksListProp {
         title: string,
@@ -47,11 +32,11 @@ interface PageTopperProps {
 export const PageTopper = (props: PageTopperProps) => {
     const { linksList, xtraList, helpPage, ptitle, pname, vdebug } = props;
     return (
-        <Box display="flex" justifyContent="space-between">
+        <Box mx={2} display="flex" justifyContent="space-between">
         <div style={{ float: 'left' }}>
             <Breadcrumbs separator=">" aria-label="Breadcrumb">
             { (pname !== 'Home') &&
-                <LinkD key="home" to='/home' vdebug={vdebug}>Home</LinkD>
+                <LinkD color='secondary' key="home" to='/home' vdebug={vdebug}>Home</LinkD>
             }
 
            { (linksList) && linksList.map(item => (
@@ -81,7 +66,7 @@ export const PageTopper = (props: PageTopperProps) => {
 
         { (helpPage) ?
             <div >
-                <Link to={helpPage}>Help</Link>
+                <LinkD to={helpPage} color='secondary'>Help</LinkD>
             </div> :
             <div >
               &nbsp;
