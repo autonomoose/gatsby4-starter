@@ -1,23 +1,31 @@
+/* Dark theme colors
+ * style definitions and site custom attribs
+ * are defined in light.ts
+*/
 import { ThemeOptions } from "@mui/material";
 
 export const darkTheme: ThemeOptions = {
   palette: {
     mode: "dark",
     site: {
-      main: "#1f1311",
+      main: "#031424", // ultramarine
       contrastText: "#ffffff",
       },
-    ack: {
-      main: "#27233e",
+    site2: {
+      main: "#1a0315", // deep plum
       contrastText: "#ffffff",
       },
-    pending: {
-      main: "#3e2723",
+    hlight: {
+      main: "#382003", // brown
+      contrastText: "#ffffff",
+      },
+    hlight2: {
+      main: "#30415d", // indigo
       contrastText: "#ffffff",
       },
     background: {
-      paper: "#1f1311",
-      default: "#120b0a",
+      paper: "#031424", // ultramarine
+      default: "#000810", // dark navy
     },
   },
 };

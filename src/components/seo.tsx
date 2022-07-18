@@ -1,7 +1,10 @@
 /**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
+ * The original component uses a static query to get this,
+ *  but I have replaced it with fun that just gets it as
+ *  parameters as a matter of taste.
  *
+ * For the old SEO component that queries for data with
+ *  Gatsby's useStaticQuery React hook
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
