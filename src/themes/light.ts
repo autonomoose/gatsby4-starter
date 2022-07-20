@@ -15,6 +15,31 @@ declare module '@mui/material/styles' {
   }
 }
 export const lightTheme: ThemeOptions = {
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+            backgroundImage: 'linear-gradient(to right,  #f2eee2, #f5f5f5)',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+            backgroundImage: 'linear-gradient(to right,  #f2eee2, #f5f5f5)',
+            "&.grad":{
+            backgroundImage: 'linear-gradient(to right,  #B0E0E6, #f5f5f5)',
+            },
+            "&.grad2":{
+            backgroundImage: 'linear-gradient(to right,  #acca65, #f5f5f5)',
+            },
+            "&.gradsite2":{
+            backgroundImage: 'linear-gradient(to right,  #f5ce28, #f5f5f5)',
+            },
+        },
+      },
+    },
+  },
   palette: {
     mode: "light",
     site: {
@@ -22,15 +47,17 @@ export const lightTheme: ThemeOptions = {
       contrastText: "#000000",
       },
     site2: {
-      main: "#f7c331", // leather
+      main: "#f5ce28", // leather
+      // main: "#f7c331", // leather
       contrastText: "#000000",
       },
     hlight: {
-      main: "#cae4db", // morning sky
+      main: "#b0e0e6", // morning sky
+      // main: "#cae4db", // morning sky
       contrastText: "#000000",
       },
     hlight2: {
-      main: "#e37222", // tangerine
+      main: "#acca65", // green
       contrastText: "#000000",
       },
     background: {
