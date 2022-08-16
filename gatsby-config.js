@@ -19,7 +19,11 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: "src/images/wernerdigital-hosted.png",
+        cache_busting_mode: `none`
       },
+    },
+    {
+        resolve: `gatsby-plugin-offline`,
     },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
