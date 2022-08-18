@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders signed-in snapshot correctly 1`] = `
-<div>
+exports[`Header renders snapshot correctly 1`] = `
+<div
+  class="MuiBox-root css-0"
+>
   <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1hc7nu0-MuiPaper-root-MuiAppBar-root"
-    style="height: 54px; box-shadow: 0 1px 20px #000000; border-radius: 0 0 5px 5px;"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAppBar-root MuiAppBar-colorTransparent MuiAppBar-positionFixed mui-fixed css-1mhswv-MuiPaper-root-MuiAppBar-root"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1im6ja8-MuiToolbar-root"
+      class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1ti0wu3-MuiToolbar-root"
     >
       <button
         aria-label="Open menu"
@@ -31,35 +32,45 @@ exports[`Header renders signed-in snapshot correctly 1`] = `
         />
       </button>
       <a
-        href="/home"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+        href="/"
       >
-        <img
-          alt="Werner Digital"
-          src="../images/wernerdigital-hosted.png"
-          width="26"
-        />
-        Scottschedule
-      </a>
-      <div
-        class="MuiBox-root css-4q2kn1"
-      >
-        <a
-          href="/usermaint"
-          style="margin-right: 1em;"
+        <div
+          class="MuiBox-root css-k008qs"
         >
-          tester1
-        </a>
-        <button
-          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Sign Out
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          <img
+            alt="Werner Digital"
+            src="../images/wernerdigital-hosted.png"
+            width="26"
           />
-        </button>
-      </div>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-1gqyz35-MuiTypography-root"
+          >
+            GatsbyStarter
+          </p>
+        </div>
+      </a>
+      <button
+        aria-label="Dark/light mode"
+        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeStart MuiIconButton-sizeMedium css-9sors8-MuiButtonBase-root-MuiIconButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="LightModeIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
     </div>
   </header>
   <div
@@ -70,32 +81,38 @@ exports[`Header renders signed-in snapshot correctly 1`] = `
       style="visibility: hidden; webkit-transform: translateX(-0px); transform: translateX(-0px);"
     >
       <div
-        style="width: 178px; height: 39px; padding: 8px 8px; box-shadow: 0 1px 20px #000000; border-radius: 0 0 5px 5px;"
+        class="MuiBox-root css-xt39a6"
       >
-        <strong>
-          Main Menu
-        </strong>
-        <button
-          aria-label="Close menu"
-          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
-          tabindex="0"
-          type="button"
+        <div
+          class="MuiBox-root css-xwg089"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            data-testid="ChevronLeftIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
           >
-            <path
-              d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            Main Menu
+          </h6>
+          <button
+            aria-label="Close menu"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="ArrowDropUpIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="m7 14 5-5 5 5z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
+          </button>
+        </div>
       </div>
       <hr
         class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
@@ -104,7 +121,8 @@ exports[`Header renders signed-in snapshot correctly 1`] = `
         class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
       >
         <a
-          href="/home"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+          href="/"
         >
           <div
             class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-button css-bshv44-MuiButtonBase-root-MuiListItem-root"
@@ -140,39 +158,6 @@ exports[`Header renders signed-in snapshot correctly 1`] = `
             />
           </div>
         </a>
-        <div
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-button css-bshv44-MuiButtonBase-root-MuiListItem-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              data-testid="StarIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiListItemText-root css-tlelie-MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
-            >
-              Logout
-            </span>
-          </div>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </div>
       </ul>
     </div>
   </div>

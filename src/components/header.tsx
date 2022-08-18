@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { StaticImage } from 'gatsby-plugin-image'
-import { navigate } from "gatsby";
-import { Auth } from 'aws-amplify';
 
 import LinkD from './linkd';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -21,10 +18,8 @@ import Typography from '@mui/material/Typography';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
-import StarIcon from '@mui/icons-material/Star';
 
 
 interface ListItemMenuBasics {
@@ -95,15 +90,6 @@ const Header = (props: HeaderProps) => {
       }
   };
 
-  async function signOut() {
-    try {
-        await Auth.signOut({ global: true });
-        navigate("/");
-    } catch (error) {
-        console.warn('error signing out: ', error);
-    }
-  };
-
   const homePage = (props.uname && props.uname !== '')? "/home": "/";
   return(
     <Box>
@@ -124,31 +110,11 @@ const Header = (props: HeaderProps) => {
             <Typography variant='body1' sx={{
               color: (theme) => (theme.palette.text.primary),
             }}>
-              Scottschedule
+              GatsbyStarter
             </Typography>
             </Box>
           </LinkD>
 
-          { (props.uname && props.uname !== '') ?
-              <Box mr={1} display='flex' alignItems='center' sx={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
-                  <LinkD to="/usermaint" style={{ marginRight: `1rem`}} >
-                    <Typography variant='body1'>
-                      {props.uname}
-                    </Typography>
-                  </LinkD>
-                  <Button variant="outlined" onClick={signOut}>
-                    Sign Out
-                  </Button>
-               </Box>
-               :
-               <Box sx={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
-                 <LinkD to="/home" style={{ marginRight: `1em`}} >
-                     <Button variant="outlined">
-                       Sign In
-                     </Button>
-                 </LinkD>
-               </Box>
-          }
           <IconButton aria-label="Dark/light mode" onClick={() => handleDarkClick(props.mode)} edge="start"  >
             {(props.mode === 'dark') ? <DarkModeIcon /> : <LightModeIcon />}
           </IconButton>
@@ -177,22 +143,7 @@ const Header = (props: HeaderProps) => {
         <Divider />
 
         <List>
-          { (props.uname && props.uname !== '') ?
-            <>
-            <ListItemMenu link="/home" icon={<HomeIcon />} text="Home" />
-            <ListItemMenu link="/usermaint" icon={<StarIcon />} text="Account" />
-            <ListItemMenu link="/scheds" icon={<StarIcon />} text="Schedules" />
-            <ListItemMenu link="/events" icon={<StarIcon />} text="Events" />
-            <ListItemMenu link="/help" icon={<StarIcon />} text="Help" />
-            <ListItemMenu jslink={signOut} icon={<StarIcon />} text="Logout" />
-            </>
-          :
-            <>
-            <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
-            <ListItemMenu exlink="https://www.wernerdigital.com/about" icon={<GroupIcon />}   text="About" />
-            <ListItemMenu link="/home" icon={<StarIcon />}  text="Login" />
-            </>
-          }
+          <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
         </List>
       </Drawer>
     </Box>
