@@ -1,13 +1,12 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
-import Layout from '../components/layout'
 import Box from '@mui/material/Box'
 import Seo from '../components/seo'
 
 const IndexPage = () => {
 
   return (
-      <Layout>
+      <>
       <Seo title="WDT Gatsby Starter" description="Gatsby4 starter" />
         <Box display="flex" alignItems="flex-start">
           <Box ml={2}>
@@ -18,8 +17,7 @@ const IndexPage = () => {
 
           </Box>
         </Box>
-
-      </Layout>
+      </>
   )
 }
 

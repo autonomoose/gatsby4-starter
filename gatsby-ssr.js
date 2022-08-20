@@ -5,6 +5,7 @@
  */
 import React from 'react'
 import { SnackbarProvider } from 'notistack';
+import Layout from './src/components/layout'
 
 const DeferredScript = () => {
     const scriptText = `(() => {
@@ -38,10 +39,13 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
     setPreBodyComponents(<DeferredScript key='colorMode' />);
 };
 
-export const wrapPageElement = ({ element }) => {
-  // props provide same data to Layout as Page element will get
-  // including location, data, etc - you don't need to pass it
-  return <SnackbarProvider maxSnack={3} dense preventDuplicate>{element}</SnackbarProvider>;
-};
+export const wrapPageElement = ({ element,props }) => {
+  return (
+    <SnackbarProvider maxSnack={3} dense preventDuplicate>
+      <Layout {...props}>
+        {element}
+      </Layout>
+    </SnackbarProvider>
+)};
 
 

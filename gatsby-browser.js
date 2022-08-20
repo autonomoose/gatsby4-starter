@@ -9,6 +9,7 @@ import Amplify from 'aws-amplify';
 import awsconfig, { apiconfig } from './src/aws-safeset';
 // import awsconfig, { apiconfig, storageconfig } from './src/aws-safeset';
 import { SnackbarProvider } from 'notistack';
+import Layout from './src/components/layout'
 require('typeface-roboto');
 
 Amplify.configure(awsconfig)
@@ -16,8 +17,11 @@ Amplify.configure(apiconfig);
 // setup in aws-safeset before enabling
 // Amplify.configure(storageconfig);
 
-export const wrapPageElement = ({ element }) => {
-  // props provide same data to Layout as Page element will get
-  // including location, data, etc - you don't need to pass it
-  return <SnackbarProvider maxSnack={3} dense preventDuplicate>{element}</SnackbarProvider>;
-};
+export const wrapPageElement = ({ element, props }) => {
+    return (
+      <SnackbarProvider maxSnack={3} dense preventDuplicate>
+        <Layout {...props}>
+          {element}
+        </Layout>
+      </SnackbarProvider>
+  )};

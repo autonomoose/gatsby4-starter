@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Layout from '../components/layout';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -78,7 +76,7 @@ const ButtonVar = (props: ButtonVarProps) => {
 )}
 const ColorPage = () => {
   return (
-      <Layout>
+    <>
         <Paper>
         <Box py={3} display="flex" alignItems="flex-start" justifyContent="space-evenly">
           <Box px={2}>
@@ -148,7 +146,7 @@ const ColorPage = () => {
           </Box>
 
         </Box>
-      </Layout>
+      </>
   )
 }
 
