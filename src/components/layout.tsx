@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,12 +22,12 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
     const [mode, setMode] = React.useState("light");
 
-    const theme = React.useMemo(
+    const theme = useMemo(
         () => createTheme(mode === "light" ? lightTheme : darkTheme), [mode]
     );
 
     // setup dark/light mode on initial load and add listener
-    React.useEffect(() => {
+    useEffect(() => {
         let localColor = window.localStorage.getItem('color-mode');
 
         if (typeof localColor !== 'string') {
@@ -48,6 +49,7 @@ const Layout = ({ children }: LayoutProps) => {
     }, []);
 
   return (
+        <AmplifyAuthenticator>
         <ThemeProvider theme={theme}><CssBaseline enableColorScheme />
         <div style={{ margin: `1rem auto`, minHeight: '100vh', }} >
           <Header uname="" mode={mode} setMode={setMode} />
@@ -68,6 +70,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </div>
         </ThemeProvider>
+        </AmplifyAuthenticator>
   )
 }
 

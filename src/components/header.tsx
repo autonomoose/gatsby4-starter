@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { StaticImage } from 'gatsby-plugin-image'
+import { navigate } from "gatsby";
+import { Auth } from 'aws-amplify';
 
 import LinkD from './linkd';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -20,6 +23,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import StarIcon from '@mui/icons-material/Star';
 
 
 interface ListItemMenuBasics {
@@ -89,6 +93,14 @@ const Header = (props: HeaderProps) => {
           window.localStorage.setItem('color-mode', newMode);
       }
   };
+  async function signOut() {
+    try {
+        await Auth.signOut({ global: true });
+        navigate("/");
+    } catch (error) {
+        console.warn('error signing out: ', error);
+    }
+  };
 
   const homePage = (props.uname && props.uname !== '')? "/home": "/";
   return(
@@ -114,6 +126,10 @@ const Header = (props: HeaderProps) => {
             </Typography>
             </Box>
           </LinkD>
+
+          <Button variant="outlined" onClick={signOut}>
+            Sign Out
+          </Button>
 
           <IconButton aria-label="Dark/light mode" onClick={() => handleDarkClick(props.mode)} edge="start"  >
             {(props.mode === 'dark') ? <DarkModeIcon /> : <LightModeIcon />}
@@ -144,6 +160,7 @@ const Header = (props: HeaderProps) => {
 
         <List>
           <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
+          <ListItemMenu jslink={signOut} icon={<StarIcon />} text="Logout" />
         </List>
       </Drawer>
     </Box>
