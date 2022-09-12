@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -20,8 +19,10 @@ interface LayoutProps {
         children: React.ReactNode,
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, location }: LayoutProps) => {
+    const { user, signOut } = useAuthenticator((context) => [context.user]);
     const [mode, setMode] = React.useState("light");
+    console.log('location:', location);
 
     const theme = useMemo(
         () => createTheme(mode === "light" ? lightTheme : darkTheme), [mode]
@@ -51,11 +52,10 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
         <ThemeProvider theme={theme}><CssBaseline enableColorScheme />
-              <Authenticator>
-        {({ signOut }) => { return (
+        { (!user && location?.pathname !== '/') ? <Authenticator /> :
 
         <div style={{ margin: `1rem auto`, minHeight: '100vh', }} >
-          <Header uname="" mode={mode} setMode={setMode} />
+          <Header uname={(user?.username) ? user.username: "" } mode={mode} setMode={setMode} />
           <div style={{ margin: `0 auto`, padding: `50px 1.0875rem 1.45rem`, maxWidth: 960, }} >
             <main>{children}</main>
 
@@ -72,9 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
             </footer>
           </div>
         </div>
-
-        )}}
-      </Authenticator>
+        }
         </ThemeProvider>
   )
 }

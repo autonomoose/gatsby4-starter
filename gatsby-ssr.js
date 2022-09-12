@@ -6,6 +6,7 @@
 import React from 'react'
 import { SnackbarProvider } from 'notistack';
 import Layout from './src/components/layout'
+import { Authenticator } from '@aws-amplify/ui-react';
 
 const DeferredScript = () => {
     const scriptText = `(() => {
@@ -41,11 +42,13 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 
 export const wrapPageElement = ({ element,props }) => {
   return (
+    <Authenticator.Provider>
     <SnackbarProvider maxSnack={3} dense preventDuplicate>
       <Layout {...props}>
         {element}
       </Layout>
     </SnackbarProvider>
+    </Authenticator.Provider>
 )};
 
 

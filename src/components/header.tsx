@@ -127,10 +127,22 @@ const Header = (props: HeaderProps) => {
             </Box>
           </LinkD>
 
-          <Button variant="outlined" onClick={signOut}>
-            Sign Out
-          </Button>
-
+          { (props.uname && props.uname !== '') ?
+            <Box mr={1} display='flex' alignItems='center' sx={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
+              <Typography variant='body1' mr={1}>
+                {props.uname}
+              </Typography>
+              <Button variant="outlined" onClick={signOut}>
+                Sign Out
+              </Button>
+            </Box>
+          :
+            <LinkD to="/home" style={{ marginRight: `1em`}} >
+                <Button variant="outlined">
+                  Sign In
+                </Button>
+            </LinkD>
+          }
           <IconButton aria-label="Dark/light mode" onClick={() => handleDarkClick(props.mode)} edge="start"  >
             {(props.mode === 'dark') ? <DarkModeIcon /> : <LightModeIcon />}
           </IconButton>
@@ -160,7 +172,11 @@ const Header = (props: HeaderProps) => {
 
         <List>
           <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
-          <ListItemMenu jslink={signOut} icon={<StarIcon />} text="Logout" />
+          { (props.uname && props.uname !== '') ?
+            <ListItemMenu jslink={signOut} icon={<StarIcon />} text="Logout" />
+          :
+            <ListItemMenu link="/home" icon={<StarIcon />} text="Login" />
+          }
         </List>
       </Drawer>
     </Box>
