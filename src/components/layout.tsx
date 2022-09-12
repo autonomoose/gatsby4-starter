@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -49,8 +50,10 @@ const Layout = ({ children }: LayoutProps) => {
     }, []);
 
   return (
-        <AmplifyAuthenticator>
         <ThemeProvider theme={theme}><CssBaseline enableColorScheme />
+              <Authenticator>
+        {({ signOut }) => { return (
+
         <div style={{ margin: `1rem auto`, minHeight: '100vh', }} >
           <Header uname="" mode={mode} setMode={setMode} />
           <div style={{ margin: `0 auto`, padding: `50px 1.0875rem 1.45rem`, maxWidth: 960, }} >
@@ -69,8 +72,10 @@ const Layout = ({ children }: LayoutProps) => {
             </footer>
           </div>
         </div>
+
+        )}}
+      </Authenticator>
         </ThemeProvider>
-        </AmplifyAuthenticator>
   )
 }
 
