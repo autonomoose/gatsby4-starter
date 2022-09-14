@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../components/layout';
+import Seo from '../components/seo'
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -78,7 +78,8 @@ const ButtonVar = (props: ButtonVarProps) => {
 )}
 const ColorPage = () => {
   return (
-      <Layout>
+      <>
+      <Seo title="WDT colors" description="Gatsby4 starter colors page" />
         <Paper>
         <Box py={3} display="flex" alignItems="flex-start" justifyContent="space-evenly">
           <Box px={2}>
@@ -148,7 +149,7 @@ const ColorPage = () => {
           </Box>
 
         </Box>
-      </Layout>
+      </>
   )
 }
 

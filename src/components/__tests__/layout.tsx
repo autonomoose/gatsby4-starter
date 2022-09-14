@@ -5,8 +5,12 @@ import Layout from "../layout"
 
 // headerpub describes blank uname header
 describe("Layout", () => {
-  it("renders snapshot correctly", () => {
-    const {container} = render(<Layout><div>Test</div></Layout>);
+  it("renders index snapshot correctly", () => {
+    const {container} = render(<Layout location='/'><div>Test</div></Layout>);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+  it("renders home snapshot correctly", () => {
+    const {container} = render(<Layout location='/home'><div>Test</div></Layout>);
     expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -17,12 +17,12 @@ import { lightTheme } from "../themes/light";
 
 interface LayoutProps {
         children: React.ReactNode,
+        location: any,
 }
 
 const Layout = ({ children, location }: LayoutProps) => {
-    const { user, signOut } = useAuthenticator((context) => [context.user]);
+    // setup display modes
     const [mode, setMode] = React.useState("light");
-    console.log('location:', location);
 
     const theme = useMemo(
         () => createTheme(mode === "light" ? lightTheme : darkTheme), [mode]
@@ -30,10 +30,11 @@ const Layout = ({ children, location }: LayoutProps) => {
 
     // setup dark/light mode on initial load and add listener
     useEffect(() => {
+        // local color should be set to dark, or light
         let localColor = window.localStorage.getItem('color-mode');
+        const root = window.document.documentElement;
 
         if (typeof localColor !== 'string') {
-            const root = window.document.documentElement;
             localColor = root.style.getPropertyValue('--color-mode');
             window.localStorage.setItem('color-mode', localColor);
         }
@@ -50,9 +51,57 @@ const Layout = ({ children, location }: LayoutProps) => {
         };
     }, []);
 
+    useEffect(() => {
+        const root = window.document.documentElement;
+        if (mode === 'light') {
+            // backgrounds, borders
+            root.style.setProperty('--amplify-colors-background-primary', '#f2eee2');
+            root.style.setProperty('--amplify-colors-border-primary', 'var(--amplify-colors-blue-90)');
+            root.style.setProperty('--amplify-colors-border-focus', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-primary-background-color', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-primary-hover-background-color', 'var(--amplify-colors-blue-80)');
+            root.style.setProperty('--amplify-components-button-primary-active-background-color', 'var(--amplify-colors-blue-20)');
+
+            // text
+            root.style.setProperty('--amplify-colors-font-primary', 'var(--amplify-colors-black)');
+            root.style.setProperty('--amplify-colors-font-interactive', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-color', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-hover-color', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-hover-border-color', 'var(--amplify-colors-blue-90)');
+            root.style.setProperty('--amplify-components-button-hover-background-color', '#f5ce28');
+
+            root.style.setProperty('--amplify-components-button-link-hover-color', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-link-hover-background-color', '#f5ce28');
+
+        } else {
+            // backgrounds, borders, buttons
+            root.style.setProperty('--amplify-colors-background-primary', '#031424');
+            root.style.setProperty('--amplify-colors-border-primary', 'var(--amplify-colors-blue-80)');
+            root.style.setProperty('--amplify-colors-border-focus', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-primary-background-color', 'var(--amplify-colors-blue-100)');
+            root.style.setProperty('--amplify-components-button-primary-hover-background-color', 'var(--amplify-colors-blue-80)');
+            root.style.setProperty('--amplify-components-button-primary-active-background-color', 'var(--amplify-colors-blue-60)');
+
+            // text
+            root.style.setProperty('--amplify-colors-font-primary', 'var(--amplify-colors-white)');
+            root.style.setProperty('--amplify-colors-font-interactive', 'var(--amplify-colors-blue-40)');
+            root.style.setProperty('--amplify-components-button-color', 'var(--amplify-colors-blue-40)');
+            root.style.setProperty('--amplify-components-button-hover-color', 'var(--amplify-colors-neutral-60)');
+            root.style.setProperty('--amplify-components-button-hover-border-color', 'var(--amplify-colors-blue-60)');
+            root.style.setProperty('--amplify-components-button-hover-background-color', '#30415d');
+
+            root.style.setProperty('--amplify-components-button-link-hover-color', 'var(--amplify-colors-neutral-60)');
+            root.style.setProperty('--amplify-components-button-link-hover-background-color', '#30415d');
+        }
+    }, [mode]);
+
+    // setup bespoke authentication
+    const { user } = useAuthenticator((context) => [context.user]);
+
   return (
         <ThemeProvider theme={theme}><CssBaseline enableColorScheme />
-        { (!user && location?.pathname !== '/') ? <Authenticator /> :
+        { (!user && location?.pathname !== '/') ?
+            <Authenticator hideSignUp={true} /> :
 
         <div style={{ margin: `1rem auto`, minHeight: '100vh', }} >
           <Header uname={(user?.username) ? user.username: "" } mode={mode} setMode={setMode} />
