@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorPage renders snapshot correctly 1`] = `
+<div
+  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1ps6pg7-MuiPaper-root"
+>
+  <div
+    class="MuiBox-root css-x3vh67"
+  >
+    <div
+      class="MuiBox-root css-gajhq5"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+      >
+        Site color check h4
+      </h1>
+      (paper)
+    </div>
+    <div
+      class="MuiBox-root css-12s4ewb"
+    >
+      <div
+        class="MuiBox-root css-1s7sx0i"
+      >
+        site
+      </div>
+      <div
+        class="MuiBox-root css-1n3leq2"
+      >
+        site2
+      </div>
+      <div
+        class="MuiBox-root css-1ak743i"
+      >
+        highlight
+      </div>
+      <div
+        class="MuiBox-root css-1a8e3qy"
+      >
+        highlight2
+      </div>
+    </div>
+  </div>
+</div>
+`;

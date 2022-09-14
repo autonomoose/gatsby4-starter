@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage renders snapshot correctly 1`] = `
+<div
+  class="MuiBox-root css-1yp4ln"
+>
+  <div
+    class="MuiBox-root css-pntgf1"
+  >
+    <h1
+      id="site-name"
+    >
+      Starter Home
+    </h1>
+  </div>
+</div>
+`;

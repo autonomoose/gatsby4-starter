@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Seo from '../components/seo'
 
-const IndexPage = () => {
+const HomePage = () => {
 
   return (
       <>
@@ -17,4 +17,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default HomePage
