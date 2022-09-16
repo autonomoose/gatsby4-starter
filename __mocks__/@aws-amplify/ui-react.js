@@ -8,7 +8,7 @@ export const useAuthenticator = props => {
     const user = {
         username: 'testusr',
     }
-    return ({ user });
+    return ({ user, authStatus: 'authenticated' });
 }
 
 

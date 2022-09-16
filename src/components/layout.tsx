@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
 import HomeIcon from '@mui/icons-material/Home';
+import StarIcon from '@mui/icons-material/Star';
 
 import Header from './header';
 import LinkD from './linkd';
@@ -96,23 +97,31 @@ const Layout = ({ children, location }: LayoutProps) => {
     }, [mode]);
 
     // setup bespoke authentication
-    const { user } = useAuthenticator((context) => [context.user]);
+    const { authStatus } = useAuthenticator(context => [context.authStatus]);
 
   return (
         <ThemeProvider theme={theme}><CssBaseline enableColorScheme />
-        { (!user && location?.pathname !== '/') ?
+        { (authStatus !== 'authenticated' && location?.pathname !== '/') ?
             <Authenticator hideSignUp={true} /> :
 
         <div style={{ margin: `1rem auto`, minHeight: '100vh', }} >
-          <Header uname={(user?.username) ? user.username: "" } mode={mode} setMode={setMode} />
+          <Header location={location?.pathname || ''} mode={mode} setMode={setMode} />
           <div style={{ margin: `0 auto`, padding: `50px 1.0875rem 1.45rem`, maxWidth: 960, }} >
             <main>{children}</main>
 
             <footer style={{ paddingTop: 40 }}>
               <Divider />
               <Box display='flex' justifyContent='space-around'>
-                <LinkD color='secondary' to='/'><HomeIcon /> Home</LinkD>
-
+                { (authStatus === 'authenticated') ?
+                  <>
+                  <LinkD color='secondary' to='/home'><HomeIcon /> Home</LinkD>
+                  <LinkD color='secondary' to='/colorchk'><StarIcon /> Colors</LinkD>
+                  </>
+                :
+                  <>
+                  <LinkD color='secondary' to='/'><HomeIcon /> Home</LinkD>
+                  </>
+                }
               </Box>
               <Divider />
               <Typography variant='caption' mx={2}>

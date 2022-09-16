@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import { StaticImage } from 'gatsby-plugin-image'
 import { navigate } from "gatsby";
-import { Auth } from 'aws-amplify';
 
 import LinkD from './linkd';
 
@@ -78,7 +78,7 @@ const ListItemMenu = (props: ListItemMenuProps) => {
 
 
 interface HeaderProps {
-        uname?: string,
+        location?: string,
         mode?: string,
         setMode?: (arg0:string) => void,
 }
@@ -93,16 +93,19 @@ const Header = (props: HeaderProps) => {
           window.localStorage.setItem('color-mode', newMode);
       }
   };
-  async function signOut() {
+  async function bespokeSignOut() {
     try {
-        await Auth.signOut({ global: true });
+        await signOut();
+        // force the page to re-render
         navigate("/");
     } catch (error) {
         console.warn('error signing out: ', error);
     }
   };
 
-  const homePage = (props.uname && props.uname !== '')? "/home": "/";
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const { authStatus } = useAuthenticator(context => [context.authStatus]);
+
   return(
     <Box>
       <AppBar position="fixed" elevation={0} color='transparent'
@@ -116,7 +119,7 @@ const Header = (props: HeaderProps) => {
             <MenuIcon />
           </IconButton>
 
-          <LinkD to={homePage}>
+          <LinkD to={(authStatus === 'authenticated') ? '/home': '/'}>
             <Box display='flex' >
             <StaticImage width={26} alt="Werner Digital" src="../images/wernerdigital-hosted.png"/>
             <Typography variant='body1' sx={{
@@ -127,12 +130,12 @@ const Header = (props: HeaderProps) => {
             </Box>
           </LinkD>
 
-          { (props.uname && props.uname !== '') ?
+          { (authStatus === 'authenticated' && user && user.username !== '') ?
             <Box mr={1} display='flex' alignItems='center' sx={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
               <Typography variant='body1' mr={1}>
-                {props.uname}
+                {user.username}
               </Typography>
-              <Button variant="outlined" onClick={signOut}>
+              <Button variant="outlined" onClick={bespokeSignOut}>
                 Sign Out
               </Button>
             </Box>
@@ -152,8 +155,8 @@ const Header = (props: HeaderProps) => {
 
       <Drawer variant="persistent" anchor="left" open={open} >
         <Box sx={{
-          width:"178px",
-          height: (props.uname && props.uname !== '')? "39px": "54px",
+        width:"178px",
+          height: "54px",
           padding: '8px 8px',
           boxShadow: '0 1px 20px #000000',
           borderRadius: '0 0 5px 5px'
@@ -171,11 +174,17 @@ const Header = (props: HeaderProps) => {
         <Divider />
 
         <List>
-          <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
-          { (props.uname && props.uname !== '') ?
-            <ListItemMenu jslink={signOut} icon={<StarIcon />} text="Logout" />
+          { (authStatus === 'authenticated') ?
+            <>
+            <ListItemMenu link="/home" icon={<HomeIcon />} text="Home" />
+            <ListItemMenu link="/colorchk" icon={<StarIcon />} text="Colors" />
+            <ListItemMenu jslink={bespokeSignOut} icon={<StarIcon />} text="Logout" />
+            </>
           :
+            <>
+            <ListItemMenu link="/" icon={<HomeIcon />} text="Home" />
             <ListItemMenu link="/home" icon={<StarIcon />} text="Login" />
+            </>
           }
         </List>
       </Drawer>
