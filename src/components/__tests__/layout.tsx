@@ -6,12 +6,12 @@ import Layout from "../layout"
 describe("Layout", () => {
 
   it("renders index snapshot correctly", () => {
-    const {container} = render(<Layout location='/'><div>Test</div></Layout>);
-    expect(container.firstChild).toMatchSnapshot();
+    const {asFragment} = render(<Layout location='/'><div>Test</div></Layout>);
+    expect(asFragment()).toMatchSnapshot();
   });
   it("renders home snapshot correctly", () => {
-    const {container} = render(<Layout location='/home'><div>Test</div></Layout>);
-    expect(container.firstChild).toMatchSnapshot();
+    const {asFragment} = render(<Layout location='/home'><div>Test</div></Layout>);
+    expect(asFragment()).toMatchSnapshot();
   });
 
 });

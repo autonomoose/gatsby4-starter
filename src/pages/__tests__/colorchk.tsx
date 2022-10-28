@@ -15,7 +15,7 @@ jest.mock('notistack', () => ({
 
 describe("ColorPage", () => {
   it("renders snapshot correctly", () => {
-    const {container} = render(<ColorPage />);
-    expect(container.firstChild).toMatchSnapshot();
+    const {asFragment} = render(<ColorPage />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
