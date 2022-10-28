@@ -6,7 +6,7 @@ import Header from "../header"
 // headerpub describes blank uname header
 describe("Header", () => {
   it("renders snapshot correctly", () => {
-    const {container} = render(<Header uname="" />);
-    expect(container.firstChild).toMatchSnapshot();
+    const {asFragment} = render(<Header uname="" />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
