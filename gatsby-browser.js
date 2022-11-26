@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import Amplify from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import awsconfig, { apiconfig } from './src/aws-safeset';
 // import awsconfig, { apiconfig, storageconfig } from './src/aws-safeset';
 import { Authenticator } from '@aws-amplify/ui-react';
